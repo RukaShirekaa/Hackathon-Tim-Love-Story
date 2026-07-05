@@ -2,11 +2,33 @@
 <html lang="id">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hackathon Tim Love Story</title>
+    <meta name="theme-color" content="#9A3412" />
+    <title>Galeri Sasirangan — Kain Tradisional Khas Banjar</title>
+    <meta
+      name="description"
+      content="Galeri kain sasirangan handmade khas Banjarmasin. Motif tradisional, warna alami, dibuat dengan tangan."
+    />
+    <meta property="og:title" content="Galeri Sasirangan" />
+    <meta
+      property="og:description"
+      content="Kain sasirangan handmade khas Banjar. Motif tradisional, warna alami."
+    />
+    <meta property="og:type" content="website" />
+    <script>
+      // Apply saved theme before paint to avoid flash
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          var m = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          if (t === "dark" || (!t && m)) document.documentElement.classList.add("dark");
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
-    <main id="app"></main>
-    <script type="module" src="/src/main.ts"></script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
