@@ -24,7 +24,7 @@ export default function Admin() {
   const [deleting, setDeleting] = useState(false);
 
   useEffect(() => {
-    document.title = "Dashboard Admin — Sasirangan";
+    document.title = "Dashboard Admin - Sasirangan";
     load();
   }, []);
 
@@ -94,7 +94,7 @@ export default function Admin() {
           <p className="mt-1 text-sm text-muted-foreground">
             Kelola produk galeri.{" "}
             {isDemoAuth && (
-              <span className="text-primary">Mode demo — data tersimpan di browser ini.</span>
+              <span className="text-primary">Mode demo - data tersimpan di browser ini.</span>
             )}
           </p>
         </div>
@@ -146,6 +146,7 @@ export default function Admin() {
                 <img
                   src={p.imageUrl}
                   alt=""
+                  onError={(event) => { event.currentTarget.src = "/images/sasirangan-teal.svg"; }}
                   className="h-24 w-20 shrink-0 rounded-xl object-cover"
                   aria-hidden
                 />

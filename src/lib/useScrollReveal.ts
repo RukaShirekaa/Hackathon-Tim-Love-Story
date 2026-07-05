@@ -1,38 +1,54 @@
 import { useEffect } from "react";
 
-/**
- * Custom hook to initialize scroll reveal animations using Intersection Observer.
- * It queries all elements with a [data-reveal] attribute and adds the `.reveal-visible`
- * class when they enter the viewport.
- */
 export function useScrollReveal() {
   useEffect(() => {
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      document
+        .querySelectorAll("[data-reveal], [data-reveal-child]")
+        .forEach((el) => el.classList.add("reveal-visible"));
+      return;
+    }
+
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("reveal-visible");
-            observer.unobserve(entry.target); // Trigger once
-          }
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("reveal-visible");
+          observer.unobserve(entry.target);
         });
       },
       {
-        threshold: 0.05,
-        rootMargin: "0px 0px -40px 0px",
-      }
+        threshold: 0.08,
+        rootMargin: "0px 0px -8% 0px",
+      },
     );
 
-    const elements = document.querySelectorAll("[data-reveal]");
-    elements.forEach((el) => observer.observe(el));
+    const observe = (root: ParentNode = document) => {
+      root
+        .querySelectorAll("[data-reveal]:not(.reveal-visible), [data-reveal-child]:not(.reveal-visible)")
+        .forEach((el, index) => {
+          if (el instanceof HTMLElement && !el.style.getPropertyValue("--reveal-delay")) {
+            el.style.setProperty("--reveal-delay", `${Math.min(index * 70, 420)}ms`);
+          }
+          observer.observe(el);
+        });
+    };
+
+    observe();
+
+    const mutations = new MutationObserver((records) => {
+      records.forEach((record) => {
+        record.addedNodes.forEach((node) => {
+          if (node instanceof HTMLElement) observe(node);
+        });
+      });
+    });
+
+    mutations.observe(document.body, { childList: true, subtree: true });
 
     return () => {
-      elements.forEach((el) => {
-        try {
-          observer.unobserve(el);
-        } catch {
-          /* ignore */
-        }
-      });
+      mutations.disconnect();
+      observer.disconnect();
     };
   }, []);
 }

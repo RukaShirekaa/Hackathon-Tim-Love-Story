@@ -18,7 +18,6 @@ import { whatsappLink } from "../lib/format";
 import ProductCard from "../components/ProductCard";
 import SkeletonCard from "../components/SkeletonCard";
 import Lightbox from "../components/Lightbox";
-import { useScrollReveal } from "../lib/useScrollReveal";
 
 const WHY = [
   {
@@ -67,9 +66,9 @@ const PROCESS = [
 ];
 
 const HERO_IMAGES = [
-  "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&w=900&q=80",
-  "https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=900&q=80",
+  "/images/sasirangan-teal.svg",
+  "/images/sasirangan-amber.svg",
+  "/images/sasirangan-coral.svg",
 ];
 
 const MARQUEE = [
@@ -86,8 +85,6 @@ export default function Home() {
   const [featured, setFeatured] = useState<Product[] | null>(null);
   const [active, setActive] = useState<Product | null>(null);
 
-  useScrollReveal();
-
   useEffect(() => {
     document.title = "Galeri Sasirangan - Kain Tradisional Khas Banjar";
     getProducts()
@@ -102,35 +99,32 @@ export default function Home() {
 
   return (
     <>
-      <section className="hero-stage relative isolate overflow-hidden bg-background">
-        <div className="absolute inset-0 -z-20">
-          <img
-            src="https://images.unsplash.com/photo-1618005198143-e5283b519a7f?auto=format&fit=crop&w=1920&q=80"
-            alt=""
-            className="h-full w-full object-cover opacity-80 dark:opacity-40"
-            aria-hidden
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/85 to-background dark:from-background/10 dark:via-background/70 dark:to-background" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,rgb(var(--primary)/0.18),transparent_50%)]" />
-          <div className="absolute inset-0 motif-grid opacity-15 dark:opacity-25" aria-hidden />
+      <section className="hero-stage relative isolate overflow-hidden bg-[#050606]">
+        <div className="absolute inset-0 -z-20 overflow-hidden" aria-hidden>
+          <div className="barzzly-grid absolute inset-0" />
+          <div className="barzzly-tiles absolute inset-0" />
+          <div className="absolute inset-x-0 top-0 h-44 bg-gradient-to-b from-[#050606] via-[#050606]/78 to-transparent" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_42%,rgba(20,184,166,0.18),transparent_32%),radial-gradient(circle_at_80%_20%,rgba(245,158,11,0.10),transparent_34%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_bottom,transparent_0%,rgba(5,6,6,0.18)_45%,rgba(5,6,6,0.92)_100%)]" />
         </div>
 
-        <div className="container-app grid min-h-[85dvh] items-center gap-12 py-16 text-foreground lg:grid-cols-[1fr_450px] lg:py-24">
+        <div className="container-app grid min-h-[92dvh] items-center gap-12 pb-16 pt-28 text-white lg:grid-cols-[1fr_450px] lg:pb-24 lg:pt-32">
           <div className="relative z-10">
-            <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-primary/20 bg-primary/5 px-4 py-2 text-sm font-semibold text-primary backdrop-blur-md">
+            <div className="animate-fade-up inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/5 px-4 py-2 text-sm font-semibold text-teal-100 backdrop-blur-md">
               <Sparkles className="h-4 w-4 text-accent animate-pulse" aria-hidden />
               Koleksi Autentik Sasirangan Banjar
             </div>
-            <h1 className="animate-fade-up mt-6 max-w-5xl font-display text-[clamp(2.5rem,7vw,6rem)] font-black leading-[0.95] tracking-tight">
-              Keindahan <span className="text-primary">Jelujur</span> Tradisi.
+            <h1 className="typing-title mt-6 max-w-5xl font-display text-[clamp(2.65rem,7vw,6.1rem)] font-black leading-[0.92] tracking-tight" aria-label="Keindahan Jelujur Tradisi">
+              <span className="typing-line typing-line-one">Keindahan Jelujur</span>
+              <span className="typing-line typing-line-two">Tradisi.</span>
             </h1>
-            <p className="animate-fade-up mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground sm:text-xl">
+            <p className="animate-fade-up text-soft-rise mt-6 max-w-2xl text-lg leading-relaxed text-white/72 sm:text-xl">
               Galeri kain Sasirangan buatan tangan dari Banjarmasin. Menghadirkan kain premium berkualitas tinggi untuk dijahit sesuai kreasi busana Anda.
             </p>
             <div className="animate-fade-up mt-9 flex flex-wrap gap-4">
               <Link
                 to="/galeri"
-                className="magnetic-btn inline-flex min-h-[52px] items-center gap-2.5 rounded-xl bg-primary px-7 py-3.5 font-bold text-on-primary shadow-card transition-all hover:bg-primary/95 hover:-translate-y-0.5 border border-primary/10"
+                className="magnetic-btn inline-flex min-h-[52px] items-center gap-2.5 rounded-xl bg-primary px-7 py-3.5 font-bold text-white shadow-card transition-all hover:bg-primary/95 hover:-translate-y-0.5 border border-primary/10"
               >
                 Lihat Galeri Kain <ArrowRight className="h-5 w-5" aria-hidden />
               </Link>
@@ -138,7 +132,7 @@ export default function Home() {
                 href={whatsappLink()}
                 target="_blank"
                 rel="noreferrer"
-                className="magnetic-btn inline-flex min-h-[52px] items-center gap-2.5 rounded-xl border border-border bg-card/65 px-7 py-3.5 font-semibold text-foreground backdrop-blur-md transition-all hover:bg-muted hover:-translate-y-0.5"
+                className="magnetic-btn inline-flex min-h-[52px] items-center gap-2.5 rounded-xl border border-white/12 bg-white/8 px-7 py-3.5 font-semibold text-white backdrop-blur-md transition-all hover:-translate-y-0.5 hover:bg-white/12"
               >
                 <MessageCircle className="h-5 w-5 text-primary" aria-hidden /> Tanya Pengrajin
               </a>
@@ -160,16 +154,16 @@ export default function Home() {
                 <img src={src} alt="" className="h-full w-full rounded-xl object-cover" />
               </div>
             ))}
-            <div className="absolute bottom-20 right-12 rounded-2xl border border-border bg-card/90 p-5 text-foreground shadow-card backdrop-blur-md">
+            <div className="absolute bottom-20 right-12 rounded-2xl border border-white/12 bg-black/55 p-5 text-white shadow-card backdrop-blur-md">
               <p className="font-display text-4xl font-black text-primary">8+</p>
-              <p className="mt-1 max-w-32 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+              <p className="mt-1 max-w-32 text-xs font-semibold uppercase tracking-wider text-white/60">
                 Motif Tradisional Ready
               </p>
             </div>
           </div>
         </div>
 
-        <div className="border-y border-border/50 bg-card/45 py-4 text-foreground/80 backdrop-blur-sm">
+        <div className="border-y border-white/10 bg-black/45 py-4 text-white/75 backdrop-blur-sm">
           <div className="marquee-track flex min-w-max gap-12 text-sm font-bold uppercase tracking-wider">
             {[...MARQUEE, ...MARQUEE].map((item, index) => (
               <span key={`${item}-${index}`} className="inline-flex items-center gap-3.5">
@@ -198,7 +192,7 @@ export default function Home() {
           {WHY.map((w) => (
             <div
               key={w.title}
-              className="group rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:border-primary/20 hover:shadow-card"
+              data-reveal-child className="group rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:border-primary/20 hover:shadow-card"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5 text-primary border border-primary/10 transition-transform duration-500 group-hover:rotate-6 group-hover:scale-110">
                 <w.icon className="h-5 w-5" aria-hidden />
@@ -210,7 +204,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-reveal className="overflow-hidden bg-muted/40 py-24 border-y border-border/40">
+      <section id="proses" data-reveal className="overflow-hidden bg-muted/40 py-24 border-y border-border/40">
         <div className="container-app grid gap-12 lg:grid-cols-[450px_1fr] lg:items-center">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-primary">Proses Pembuatan</p>
@@ -222,7 +216,7 @@ export default function Home() {
             </p>
             <Link
               to="/galeri"
-              className="mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-on-primary shadow-soft transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex min-h-[48px] items-center gap-2 rounded-xl bg-primary px-6 py-3 font-semibold text-white shadow-soft transition-transform hover:-translate-y-0.5"
             >
               Jelajah Galeri Kain <ArrowRight className="h-5 w-5" aria-hidden />
             </Link>
@@ -232,7 +226,7 @@ export default function Home() {
             {PROCESS.map((item) => (
               <div
                 key={item.step}
-                className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:border-primary/20 hover:shadow-card"
+                data-reveal-child className="group relative overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-soft transition-all duration-300 hover:border-primary/20 hover:shadow-card"
               >
                 <div className="absolute -right-3 -top-5 font-display text-8xl font-black text-primary/5 transition-all duration-500 group-hover:scale-110 group-hover:text-primary/10">
                   {item.step}
@@ -248,7 +242,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-reveal className="container-app py-24">
+      <section id="koleksi" data-reveal className="container-app py-24">
         <div className="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <p className="text-xs font-bold uppercase tracking-widest text-primary">Karya Unggulan</p>
@@ -276,7 +270,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section data-reveal className="container-app py-16">
+      <section id="kontak" data-reveal className="container-app py-16">
         <div className="relative overflow-hidden rounded-3xl border border-border bg-card/50 px-6 py-16 text-foreground shadow-card sm:px-10 lg:px-16">
           <div className="absolute inset-0 -z-10 aurora-bg opacity-30" aria-hidden />
           <div className="absolute inset-0 -z-10 grid-bg-overlay [mask-image:radial-gradient(ellipse_at_center,white,transparent_80%)] opacity-30" aria-hidden />
@@ -287,7 +281,7 @@ export default function Home() {
                 Cari motif tertentu untuk seragam atau hadiah?
               </h2>
               <p className="mt-4 max-w-2xl text-muted-foreground">
-                Konsultasikan kebutuhan kain Sasirangan Anda langsung lewat WhatsApp. Admin kami siap membantu Anda memilih bahan kain, ukuran panjang, hingga rekomendasi motif Banjar yang cocok.
+                Konsultasikan kebutuhan kain Sasirangan Anda langsung lewat WhatsApp. Tim kami siap membantu Anda memilih bahan kain, ukuran panjang, hingga rekomendasi motif Banjar yang cocok.
               </p>
             </div>
             <a
@@ -315,3 +309,4 @@ export default function Home() {
     </>
   );
 }
+

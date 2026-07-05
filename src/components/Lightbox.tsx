@@ -4,6 +4,8 @@ import type { Product } from "../lib/types";
 import { formatPrice, whatsappLink } from "../lib/format";
 import { useToast } from "./Toast";
 
+const FALLBACK_IMAGE = "/images/sasirangan-teal.svg";
+
 interface Props {
   product: Product;
   hasPrev: boolean;
@@ -24,7 +26,6 @@ export default function Lightbox({
   const closeRef = useRef<HTMLButtonElement>(null);
   const toast = useToast();
 
-  // Keyboard: Esc close, arrows navigate. Lock body scroll while open.
   useEffect(() => {
     closeRef.current?.focus();
     const prevOverflow = document.body.style.overflow;
@@ -51,7 +52,7 @@ export default function Lightbox({
         toast.success("Link produk disalin ke clipboard.");
       }
     } catch {
-      /* user membatalkan share — abaikan */
+      // User cancelled sharing.
     }
   }
 
@@ -62,7 +63,6 @@ export default function Lightbox({
       aria-modal="true"
       aria-label={product.name}
     >
-      {/* Scrim: klik untuk tutup */}
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
@@ -70,18 +70,18 @@ export default function Lightbox({
       />
 
       <div className="animate-fade-up relative z-10 flex max-h-[90dvh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-card md:flex-row">
-        <div className="relative bg-muted md:w-3/5">
+        <div className="image-fallback relative bg-muted md:w-3/5">
           <img
-            src={product.imageUrl}
+            src={product.imageUrl || FALLBACK_IMAGE}
             alt={`Kain sasirangan ${product.name}`}
-            className="max-h-[45dvh] w-full object-cover md:max-h-[90dvh] md:h-full"
+            onError={(event) => {
+              if (event.currentTarget.src.endsWith(FALLBACK_IMAGE)) return;
+              event.currentTarget.src = FALLBACK_IMAGE;
+            }}
+            className="max-h-[45dvh] w-full object-cover md:h-full md:max-h-[90dvh]"
           />
-          {hasPrev && (
-            <NavArrow side="left" onClick={onPrev} label="Produk sebelumnya" />
-          )}
-          {hasNext && (
-            <NavArrow side="right" onClick={onNext} label="Produk berikutnya" />
-          )}
+          {hasPrev && <NavArrow side="left" onClick={onPrev} label="Produk sebelumnya" />}
+          {hasNext && <NavArrow side="right" onClick={onNext} label="Produk berikutnya" />}
         </div>
 
         <div className="flex flex-1 flex-col overflow-y-auto p-6">

@@ -4,8 +4,8 @@ import { SEED_PRODUCTS } from "../data/seed";
 
 /*
  * Data layer dual-mode:
- *  - Supabase terisi  → pakai tabel `products` + storage bucket.
- *  - Kosong (demo)    → pakai localStorage, di-seed dari SEED_PRODUCTS.
+ *  - Supabase terisi  -> pakai tabel `products` + storage bucket.
+ *  - Kosong (demo)    -> pakai localStorage, di-seed dari SEED_PRODUCTS.
  * Semua halaman hanya memanggil fungsi di file ini; tidak tahu mode mana.
  */
 
@@ -147,8 +147,8 @@ export async function deleteProduct(id: string): Promise<void> {
 }
 
 /**
- * Upload foto. Supabase mode → storage bucket, return public URL.
- * Demo mode → data URL (base64) supaya preview tetap tampil.
+ * Upload foto. Supabase mode -> storage bucket, return public URL.
+ * Demo mode -> data URL (base64) supaya preview tetap tampil.
  */
 export async function uploadImage(file: File): Promise<string> {
   if (hasSupabase && supabase) {

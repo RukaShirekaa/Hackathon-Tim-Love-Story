@@ -18,7 +18,7 @@ export default function Gallery() {
   const [params, setParams] = useSearchParams();
 
   useEffect(() => {
-    document.title = "Galeri Produk — Sasirangan";
+    document.title = "Galeri Produk - Sasirangan";
     getProducts()
       .then(setProducts)
       .catch(() => setProducts([]));
@@ -61,7 +61,7 @@ export default function Gallery() {
 
   return (
     <div className="container-app py-12">
-      <header className="max-w-2xl">
+      <header data-reveal className="max-w-2xl">
         <h1 className="font-display text-4xl font-black tracking-tight sm:text-5xl">
           Galeri Produk
         </h1>
@@ -71,7 +71,7 @@ export default function Gallery() {
       </header>
 
       {/* Kontrol: search + filter */}
-      <div className="mt-8 flex flex-col gap-4">
+      <div data-reveal className="mt-8 flex flex-col gap-4">
         <div className="relative max-w-md">
           <Search
             className="pointer-events-none absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground"
@@ -175,3 +175,4 @@ function EmptyState({
     </div>
   );
 }
+

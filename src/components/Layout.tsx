@@ -1,8 +1,11 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
+import { useScrollReveal } from "../lib/useScrollReveal";
 
 export default function Layout() {
+  useScrollReveal();
+
   return (
     <div className="flex min-h-dvh flex-col">
       <a
