@@ -101,7 +101,7 @@ img {
 }
 
 /* ============================================================
-   SITE NAVBAR — full-width bar at top; on scroll it becomes a
+   SITE NAVBAR - full-width bar at top; on scroll it becomes a
    centered floating glass pill (barzzly-style). Logo only, no word.
    ============================================================ */
 .site-nav {
@@ -139,7 +139,7 @@ img {
     backdrop-filter 0.5s ease;
 }
 
-/* Docked ? floating rounded pill */
+/* Docked -> floating rounded pill */
 .site-nav.is-docked {
   top: clamp(10px, 1.6vw, 18px);
 }
@@ -229,7 +229,7 @@ img {
   transform: scaleX(1);
 }
 
-/* Scroll-progress hairline — sits under the pill, only visible when docked */
+/* Scroll-progress hairline - sits under the pill, only visible when docked */
 .scroll-progress {
   position: absolute;
   inset-inline: clamp(24px, 4vw, 48px);
@@ -640,7 +640,7 @@ img {
   overflow: hidden;
 }
 
-/* No framing box — content breathes on the section itself (kills the AI-boxy look) */
+/* No framing box - content breathes on the section itself (kills the AI-boxy look) */
 .about-inner {
   position: relative;
   width: min(100%, 1120px);
@@ -659,7 +659,7 @@ img {
   text-align: left;
 }
 
-/* gold tick before the eyebrow — asymmetric editorial cue */
+/* gold tick before the eyebrow - asymmetric editorial cue */
 .about-header .eyebrow {
   display: inline-flex;
   align-items: center;
@@ -695,6 +695,14 @@ img {
   text-transform: uppercase;
 }
 
+.about-title {
+  background: linear-gradient(90deg, var(--ink) 0%, #f5d66a 48%, var(--gold) 100%);
+  color: transparent;
+  -webkit-background-clip: text;
+  background-clip: text;
+  animation: none;
+  transform: translateZ(0);
+}
 .about-lead {
   max-width: 40ch;
   color: var(--smoke);
@@ -702,7 +710,7 @@ img {
   line-height: 1.6;
 }
 
-/* clean equal cards — same height, aligned, no messy offset */
+/* clean equal cards - same height, aligned, no messy offset */
 .about-copy-grid {
   position: relative;
   z-index: 1;
@@ -770,7 +778,7 @@ img {
   font-size: 0.72rem;
 }
 
-/* kicker as a gold chip — clear card label */
+/* kicker as a gold chip - clear card label */
 .card-kicker {
   display: inline-flex;
   align-items: center;
@@ -859,7 +867,7 @@ img {
   color: var(--smoke);
 }
 
-/* --- About marquee band — slight tilt + rounded so it reads as a sticker, not a grid bar --- */
+/* --- About marquee band - slight tilt + rounded so it reads as a sticker, not a grid bar --- */
 .about-tape {
   position: relative;
   overflow: hidden;
@@ -1699,7 +1707,7 @@ img {
 }
 
 /* ============================================================
-   PREMIUM MOTION LAYER — kinetic split text, magnetic pull,
+   PREMIUM MOTION LAYER - kinetic split text, magnetic pull,
    pointer tilt, refined hover, marquee polish, mobile UX
    ============================================================ */
 
@@ -1933,7 +1941,7 @@ img {
 }
 
 /* ============================================================
-   MOBILE NAV — hamburger + full-screen staggered overlay
+   MOBILE NAV - hamburger + full-screen staggered overlay
    ============================================================ */
 .mobile-menu {
   position: fixed;
@@ -2086,5 +2094,141 @@ img {
 
   .scroll-progress {
     display: none;
+  }
+}
+
+/* mobile final pass */
+@media (max-width: 900px) {
+  .site-nav {
+    padding-inline: 10px;
+  }
+
+  .site-nav-inner {
+    padding: 10px 14px;
+    border-bottom-color: rgba(247, 245, 238, 0.1);
+  }
+
+  .site-nav.is-docked {
+    top: 8px;
+  }
+
+  .site-nav.is-docked .site-nav-inner {
+    padding: 8px 12px;
+  }
+
+  .poster-shell {
+    min-height: 100svh;
+    background-position: center top, center, center top, center;
+  }
+
+  .poster-copy {
+    left: 12px;
+    top: clamp(88px, 13svh, 118px);
+  }
+
+  .vertical-title {
+    font-size: clamp(2rem, 10vw, 3.1rem);
+  }
+
+  .vertical-apparel {
+    left: clamp(34px, 10vw, 50px);
+    font-size: clamp(0.7rem, 2.8vw, 0.95rem);
+  }
+
+  .right-panel {
+    right: 12px;
+    top: clamp(90px, 13.5svh, 124px);
+    width: min(31vw, 116px);
+    gap: 0.36rem;
+  }
+
+  .panel-logo {
+    width: 34px;
+  }
+
+  .season {
+    gap: 0.34rem;
+    font-size: clamp(0.38rem, 1.7vw, 0.48rem);
+  }
+
+  .right-panel ul {
+    justify-items: end;
+    gap: 0.18rem;
+    font-size: clamp(0.74rem, 3.8vw, 1.05rem);
+  }
+
+  .right-panel li {
+    width: auto;
+    max-width: 100%;
+    overflow: visible;
+  }
+
+  .model-stage {
+    align-items: center;
+    padding: 17svh 0 20svh;
+  }
+
+  .model-image {
+    width: min(104vw, 430px);
+    max-height: 52svh;
+    transform: translate3d(0, 3svh, 0) rotate(0.5deg);
+  }
+
+  .model-shadow {
+    bottom: 17vh;
+  }
+
+  .yellow-tape {
+    bottom: 13.2vh;
+    padding-block: 0.4rem;
+  }
+
+  .poster-footer {
+    bottom: 1.6vh;
+  }
+
+  .about-shell {
+    padding: 36px 14px 48px;
+  }
+
+  .about-inner {
+    gap: 22px;
+  }
+
+  .about-card,
+  .feature-card {
+    border-radius: 14px;
+  }
+}
+
+@media (max-width: 520px) {
+  .poster-footer p {
+    display: none;
+  }
+
+  .poster-footer {
+    bottom: 2vh;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px 0;
+  }
+
+  .stat-item:not(:last-child)::after {
+    display: none;
+  }
+
+  .stat-item {
+    padding-block: 6px;
+  }
+}
+/* lighter browser pass */
+@media (min-width: 901px) {
+  .about-title,
+  .stat-value,
+  .poster-footer strong {
+    animation: none;
   }
 }

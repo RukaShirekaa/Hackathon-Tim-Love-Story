@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import jacketImg from './assets/home.png'
-import sasiraLogo from './assets/sasira_logo.png'
-import backgroundImg from './assets/backround.jpg'
-import aboutBg from './assets/backround2.jpg'
+import jacketImg from './assets/home.webp'
+import sasiraLogo from './assets/sasira_logo.webp'
+import backgroundImg from './assets/backround.webp'
+import aboutBg from './assets/backround2.webp'
 
 // '*' sentinel = render the sparkle glyph; strings render as tape labels.
 const tapeItems = ['*', 'STREET WEAR', '*', 'SASIRANGAN', '*', 'TRADITION REBORN']
@@ -26,7 +26,7 @@ function StarGlyph() {
 const aboutStats = [
   ['100%', 'Sasirangan'],
   ['2026', 'Est. Season'],
-  ['8', 'Street Culture'],
+  ['\u221E', 'Street Culture'],
 ]
 
 const featureCards = [
@@ -34,34 +34,6 @@ const featureCards = [
   ['02', 'Oversized Fit', 'Siluet loose, bold, nyaman untuk gerak harian.'],
   ['03', 'Street Detail', 'Kontras grafis, layering, dan finishing modern.'],
 ]
-
-// Kinetic per-character reveal. `trigger="load"` plays on mount; `trigger="scroll"`
-// stays hidden until an ancestor with `.is-visible` enters the viewport.
-function SplitReveal({
-  text,
-  className = '',
-  trigger = 'load',
-  baseDelay = 0,
-  stagger = 0.05,
-}) {
-  const chars = Array.from(text)
-  const mode = trigger === 'scroll' ? 'reveal-scroll' : 'reveal-load'
-
-  return (
-    <span className={`split ${mode} ${className}`.trim()} aria-label={text}>
-      {chars.map((char, index) => (
-        <span className="split-char" aria-hidden="true" key={`${char}-${index}`}>
-          <span
-            className="split-inner"
-            style={{ '--d': `${(baseDelay + index * stagger).toFixed(3)}s` }}
-          >
-            {char === ' ' ? ' ' : char}
-          </span>
-        </span>
-      ))}
-    </span>
-  )
-}
 
 function App() {
   const shellRef = useRef(null)
@@ -300,7 +272,7 @@ function App() {
     }
   }, [])
 
-  // Track which section is in view ? highlight the matching nav link (barzzly pill).
+  // Track which section is in view - highlight the matching nav link (barzzly pill).
   useEffect(() => {
     const ids = navLinks.map(([, href]) => href.slice(1))
     const sections = ids.map((id) => document.getElementById(id)).filter(Boolean)
@@ -409,7 +381,7 @@ function App() {
             </a>
           ))}
         </nav>
-        <p className="mobile-menu-foot">SASIRA — Sasirangan Street Wear · 2026</p>
+        <p className="mobile-menu-foot">SASIRA - Sasirangan Street Wear / 2026</p>
       </div>
 
       <main
@@ -478,9 +450,7 @@ function App() {
         <div className="about-inner reveal-on-scroll">
           <header className="about-header reveal-on-scroll">
             <p className="eyebrow text-pop">Kalimantan streetwear label</p>
-            <h2 className="text-shine">
-              <SplitReveal text="ABOUT US" trigger="scroll" stagger={0.055} />
-            </h2>
+            <h2 className="about-title">ABOUT US</h2>
             <p className="about-lead text-pop">Batik sasirangan dibawa ke gaya jalanan modern.</p>
           </header>
 
