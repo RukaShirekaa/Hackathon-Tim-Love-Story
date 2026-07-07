@@ -3115,3 +3115,28 @@ img {
 .store-search-input:focus ~ .store-search-blob {
   background: transparent;
 }
+
+/* Responsive mobile adjustments for Store Navbar */
+@media (max-width: 600px) {
+  .store-nav-inner {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+  }
+
+  .store-search-wrap {
+    order: 3;
+    width: 100%;
+    margin: 0.4rem 0 0.2rem;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .store-search-input {
+    width: 140px;
+  }
+
+  .store-search-input:focus {
+    width: 100%;
+  }
+}

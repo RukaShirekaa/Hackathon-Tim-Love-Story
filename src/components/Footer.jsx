@@ -53,12 +53,12 @@ function Footer() {
             <ul className="footer-col-links">
               <li>
                 <a href="https://instagram.com/hidayathul_fikri" target="_blank" rel="noopener noreferrer">
-                  <InstagramIcon /> @hidayathul_fikri
+                  <InstagramIcon /> @fikri
                 </a>
               </li>
               <li>
                 <a href="https://instagram.com/putrii3e_" target="_blank" rel="noopener noreferrer">
-                  <InstagramIcon /> @putrii3e_
+                  <InstagramIcon /> @putri
                 </a>
               </li>
               <li>
