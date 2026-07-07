@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import StoreNav from '../components/StoreNav'
 import { listProducts, formatPrice } from '../lib/products'
 import { isSupabaseReady } from '../lib/supabase'
-import backgroundImg3 from '../assets/backround3.jpg'
+import backgroundImg3 from '../assets/backround3.webp'
 import { CardContainer, CardBody, CardItem } from '../components/ThreeDCard'
 import Footer from '../components/Footer'
 
