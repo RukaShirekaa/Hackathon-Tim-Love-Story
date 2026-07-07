@@ -11,6 +11,15 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Cache and Build tools
+.vite-cache
+.vercel
 
 # Editor directories and files
 .vscode/*

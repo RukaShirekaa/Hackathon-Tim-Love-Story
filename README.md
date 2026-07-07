@@ -1,82 +1,65 @@
-# SASIRA — Inovasi Street Wear Sasirangan
+# SASIRA - Inovasi Street Wear Sasirangan
 
-Landing page satu halaman untuk **SASIRA**, sebuah brand UMKM fiktif yang mengangkat
-kain batik **sasirangan** khas Kalimantan ke dalam produk streetwear modern —
-oversized, berani, dan siap dipakai harian.
+Situs web dinamis untuk SASIRA, sebuah brand UMKM yang mengangkat kain batik sasirangan khas Kalimantan ke dalam produk streetwear modern seperti oversized t-shirt, bomber jacket, dan hoodie yang berani serta siap dipakai harian.
 
-Proyek ini dibuat untuk **Hackathon BarzzLy x Putri** dengan tema **UMKM**.
-SASIRA adalah studi kasus fiktif: sebuah usaha lokal yang membawa warisan wastra
-tradisional ke pasar anak muda urban lewat pendekatan visual dan branding yang kuat.
+Proyek ini dibangun menggunakan arsitektur modern berbasis React dan terintegrasi penuh dengan Supabase sebagai sistem backend tanpa server untuk manajemen produk.
 
-## Tentang Web Ini
+---
 
-Situs terdiri dari dua bagian utama dalam satu alur scroll:
+## Fitur Utama
 
-- **Home** — poster hero sinematik: judul vertikal "SASIRA APPAREL", figur produk
-  di tengah panggung, panel kata kunci brand, marquee bertema garis pengaman
-  (caution stripe), dan footer tagline.
-- **About** — narasi brand (Origin & Vision), tiga kartu keunggulan produk,
-  deret angka statistik, marquee kedua, dan tanda tangan visual "BUILT DIFFERENT".
+### 1. Integrasi Supabase dan CRUD Panel Admin
+* Autentikasi Pengelola: Halaman login admin yang aman menggunakan sistem pencocokan kata sandi berbasis enkripsi satu arah (SHA-256).
+* Manajemen Produk Lengkap: Panel khusus admin untuk menambah, melihat, memperbarui, dan menghapus (CRUD) item produk secara real-time.
+* Unggah Gambar Dinamis: Upload asset gambar produk secara langsung ke bucket penyimpanan Supabase Storage (product-images).
+* Penanganan State Aplikasi: Manajemen otomatis untuk skeleton loading, daftar produk kosong, dan indikasi kegagalan koneksi database.
 
-Tema visual: gelap, editorial, dengan aksen emas. Tipografi memadukan Permanent Marker,
-Oswald, Outfit, dan JetBrains Mono untuk kontras antara karakter jalanan dan ketegasan grafis.
+### 2. Efek Parallax 3D Card ala Aceternity UI
+* Efek Kemiringan Dinamis: Kartu produk merespons arah gerakan kursor mouse menggunakan transformasi CSS 3D (perspective, rotateX, dan rotateY).
+* Pemisahan Lapisan Kedalaman (Parallax): Elemen di dalam kartu produk memiliki tingkat kedalaman (translateZ) yang berbeda untuk memberikan efek mengambang nyata:
+  * Gambar produk terangkat setinggi 100px.
+  * Label badge terangkat setinggi 120px di atas gambar.
+  * Nama produk berada pada kedalaman 50px.
+  * Tombol aksi dan harga berada pada kedalaman 70px.
+* Proyeksi Bayangan: Bayangan dinamis disematkan langsung pada elemen gambar produk saat di-hover untuk memperkuat ilusi melayang.
 
-## Animasi & Interaksi
+### 3. Mesin Pencari Gooey (Gooey Search Engine)
+* Input Elastis (Gooey Input): Fitur kolom pencarian di navbar halaman Store yang memanfaatkan filter SVG feGaussianBlur dan feColorMatrix. Kolom input melebar secara elastis dari tombol kuning saat mendapatkan fokus.
+* Filter Real-time: Menyaring daftar katalog produk secara langsung berdasarkan nama, kategori, atau deskripsi saat pengguna mengetik.
+* Penanganan Pencarian Kosong: Menyediakan tampilan umpan balik khusus jika tidak ada produk yang cocok dengan kata kunci pencarian.
 
-Seluruh gerak dibangun manual tanpa library animasi, menggunakan CSS dan sedikit
-JavaScript berbasis `requestAnimationFrame`. Semua efek dimatikan otomatis saat
-pengguna mengaktifkan `prefers-reduced-motion`.
+### 4. Transaksi Melalui WhatsApp (WhatsApp Checkout)
+* Integrasi Pesanan Langsung: Menekan tombol keranjang belanja pada kartu produk akan otomatis membuka ruang obrolan WhatsApp menuju nomor pengelola (+62 822-8793-0695).
+* Templat Pesan Otomatis: Pesan WhatsApp diformat secara dinamis berdasarkan data produk yang dipilih, berisi nama produk, kategori, dan harga untuk mempermudah transaksi.
 
-### Home
+### 5. Halaman Utama dan Katalog Store Terpisah
+* Homepage: Menampilkan persis 3 produk unggulan berdasarkan badge khusus (BEST SELLER, TRENDING, NEW ARRIVAL) untuk menjaga fokus kurasi produk utama. Sektor pemisah border-top dihilangkan agar latar belakang menyatu sempurna.
+* Halaman Katalog Store (/store): Halaman khusus yang memuat seluruh inventaris produk lengkap dengan saringan pencarian dan latar belakang khusus (backround3.jpg) dengan gradasi kontras gelap untuk keterbacaan teks.
+* Tombol Navigasi Tengah: Tombol "Lihat Semua Produk" diposisikan secara terpusat di tengah bawah grid produk homepage untuk mengarahkan pengguna ke katalog lengkap.
 
-- **Parallax pointer** — background dan figur produk bergeser halus mengikuti kursor
-  (eased, hanya desktop) lewat CSS custom property `--mx` / `--my`.
-- **Ink reveal judul** — huruf "SASIRA" dan "APPAREL" muncul dengan clip-path, blur,
-  dan skew yang mengurai ke posisi.
-- **Figur mengambang** — produk masuk dengan animasi lalu naik-turun perlahan
-  (float) disertai bayangan yang ikut bernapas.
-- **Kata kunci berurutan** — daftar kata brand muncul satu per satu dengan stagger,
-  underline emas saat hover.
-- **Scroll choreography (desktop)** — saat menggulir, blok teks kiri dan panel kanan
-  bergerak, menyusut, dan memudar mengikuti progres scroll secara real-time.
-- **Marquee caution tape** — pita berjalan tanpa henti dengan bintang SVG berputar,
-  garis diagonal bergaya garis pengaman, dan tepi yang memudar. Berhenti saat hover.
+### 6. Desain Header Navigasi dan Footer Premium
+* Perbaikan Anchor Scroll: Target ID scroll Home dipindahkan ke pembungkus elemen utama (main) untuk memastikan halaman bergeser kembali ke posisi teratas viewport secara akurat.
+* Tautan Navigasi: Navigasi Store pada halaman utama diatur untuk menggulir ke bagian bawah halaman secara halus, sementara akses ke katalog penuh dilayani oleh tombol tengah.
+* Footer Streetwear: Bagian bawah website kini dilengkapi dengan footer bertema gelap yang elegan, memuat deskripsi brand, navigasi halaman (tautan admin disembunyikan demi keamanan), serta kontak sosial media (Instagram: hidayathul_fikri, TikTok: @barzzly, WhatsApp).
 
-### Navbar
+---
 
-- **Collapse on scroll** — di paling atas navbar melebar penuh; saat menggulir ia
-  menyusut menjadi pill mengambang bergaya kaca (blur, border, bayangan) — meniru
-  pola navbar barzzly.
-- **Active link pill** — IntersectionObserver menandai section aktif; tautan yang
-  sesuai mendapat sorotan pill dan garis emas.
-- **Progress bar** — hairline gradasi emas di bawah pill menunjukkan progres scroll.
-- **Magnetic logo** — logo tertarik lembut ke arah kursor.
-- **Menu mobile** — hamburger membuka overlay layar penuh dengan reveal clip-path
-  melingkar dan item menu yang muncul berurutan.
+## Detail Animasi dan Interaksi
 
-### About
+Seluruh gerak animasi dibangun secara manual menggunakan CSS murni dan JavaScript berbasis requestAnimationFrame untuk menjaga performa optimal.
+* Parallax Pointer: Background hero dan model utama bergeser mengikuti koordinat mouse menggunakan properti CSS kustom --mx dan --my.
+* Ink Reveal: Judul panggung utama muncul dengan transisi clip-path, blur, dan efek skew saat halaman dimuat.
+* Collapse Navbar: Navigasi atas otomatis menyusut dari lebar penuh menjadi bentuk pil kaca melayang (glassmorphism) saat halaman digulirkan ke bawah.
+* Split-Text: Karakter teks ABOUT US terurai per huruf dan muncul dengan efek shimmer emas secara berurutan.
 
-- **Split-text reveal** — heading "ABOUT US" terurai per huruf, tiap glyph naik dari
-  balik mask dengan stagger, dipadukan shimmer emas.
-- **Kartu 3D tilt** — kartu Origin/Vision dan kartu fitur miring mengikuti kursor
-  (`perspective` + `rotateX/rotateY` + `translateZ`), dengan sorotan cahaya emas
-  yang mengejar pointer — meniru kartu barzzly. Di perangkat sentuh diganti umpan
-  balik tap sederhana.
-- **Reveal on scroll** — seluruh elemen masuk dengan fade, translate, dan blur saat
-  memasuki viewport, memakai IntersectionObserver.
-- **Statistik & tanda tangan** — deret angka dan tagline "BUILT DIFFERENT" dengan
-  garis flank dan efek shine.
+---
 
-## Aksesibilitas & Responsif
+## Teknologi yang Digunakan
 
-- Mendukung `prefers-reduced-motion` di seluruh lapisan animasi.
-- Target sentuh dan safe-area diperhatikan; navbar menghormati `env(safe-area-inset)`.
-- Layout mobile-first: tilt 3D dan efek magnetic dinonaktifkan pada layar sentuh,
-  diganti reveal dan umpan balik tap yang lebih ringan agar scroll tetap mulus.
-
-## Teknologi
-
-- React 19
-- Vite
-- CSS murni (satu stylesheet global, tanpa framework UI)
-- oxlint
+* React 19
+* React Router DOM v7
+* Vite
+* Supabase JS Client
+* CSS Vanilla (Tanpa framework eksternal)
+* Oxlint (Linter)
+* Web Crypto API (Autentikasi SHA-256)
